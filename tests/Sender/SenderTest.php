@@ -2,7 +2,6 @@
 
 namespace Facile\Sentry\CommonTest\Sender;
 
-use Facile\Sentry\Common\Sanitizer\Sanitizer;
 use Facile\Sentry\Common\Sanitizer\SanitizerInterface;
 use Facile\Sentry\Common\Sender\Sender;
 use Facile\Sentry\Common\StackTrace\StackTraceInterface;
@@ -29,6 +28,8 @@ class SenderTest extends TestCase
                 'foo' => 'bar',
                 'object' => 'stdClass',
             ]);
+
+        $stackTrace->addIgnoreBacktraceNamespace('Facile\\Sentry\\Common\\Sender')->shouldBeCalled();
 
         $sender = new Sender(
             $client->reveal(),
@@ -78,6 +79,8 @@ class SenderTest extends TestCase
                 'foo' => 'bar',
                 'object' => 'stdClass',
             ]);
+
+        $stackTrace->addIgnoreBacktraceNamespace('Facile\\Sentry\\Common\\Sender')->shouldBeCalled();
 
         $sender = new Sender(
             $client->reveal(),

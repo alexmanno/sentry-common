@@ -7,6 +7,13 @@ namespace Facile\Sentry\Common\StackTrace;
 interface StackTraceInterface
 {
     /**
+     * Add namespace to ignore during cleanBacktrace() method.
+     *
+     * @param string $namespace
+     */
+    public function addIgnoreBacktraceNamespace(string $namespace);
+
+    /**
      * Generate exceptions data for Sentry
      *
      * @param \Throwable $exception
