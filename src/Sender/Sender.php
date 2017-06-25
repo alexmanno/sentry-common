@@ -41,7 +41,9 @@ final class Sender implements SenderInterface
     ) {
         $this->client = $client;
         $this->sanitizer = $sanitizer ?: new Sanitizer();
-        $this->stackTrace = $stackTrace ?: new StackTrace($client, null, null, [__NAMESPACE__]);
+        $this->stackTrace = $stackTrace ?: new StackTrace($client);
+
+        $this->stackTrace->addIgnoreBacktraceNamespace(__NAMESPACE__);
     }
 
     /**

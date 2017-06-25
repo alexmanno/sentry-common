@@ -24,7 +24,7 @@ class StackTrace implements StackTraceInterface
      */
     private $reprSerializer;
     /**
-     * @var array
+     * @var string[]
      */
     private $ignoreBacktraceNamespaces;
 
@@ -46,6 +46,15 @@ class StackTrace implements StackTraceInterface
         $this->serializer = $serializer ?: new Raven_Serializer();
         $this->reprSerializer = $reprSerializer;
         $this->ignoreBacktraceNamespaces = $ignoreBacktraceNamespaces;
+        $this->addIgnoreBacktraceNamespace(__NAMESPACE__);
+    }
+
+    /**
+     * @param string $namespace
+     */
+    public function addIgnoreBacktraceNamespace(string $namespace)
+    {
+        $this->ignoreBacktraceNamespaces[] = $namespace;
     }
 
     /**
