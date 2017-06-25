@@ -11,6 +11,23 @@ use Raven_Client;
 
 class SenderTest extends TestCase
 {
+    public function testGetters()
+    {
+        $client = $this->prophesize(Raven_Client::class);
+        $sanitizer = $this->prophesize(SanitizerInterface::class);
+        $stackTrace = $this->prophesize(StackTraceInterface::class);
+
+        $sender = new Sender(
+            $client->reveal(),
+            $sanitizer->reveal(),
+            $stackTrace->reveal()
+        );
+
+        $this->assertSame($client->reveal(), $sender->getClient());
+        $this->assertSame($sanitizer->reveal(), $sender->getSanitizer());
+        $this->assertSame($stackTrace->reveal(), $sender->getStackTrace());
+    }
+
     public function testSend()
     {
         $client = $this->prophesize(Raven_Client::class);

@@ -47,6 +47,30 @@ final class Sender implements SenderInterface
     }
 
     /**
+     * @return Raven_Client
+     */
+    public function getClient(): Raven_Client
+    {
+        return $this->client;
+    }
+
+    /**
+     * @return SanitizerInterface
+     */
+    public function getSanitizer(): SanitizerInterface
+    {
+        return $this->sanitizer;
+    }
+
+    /**
+     * @return StackTraceInterface
+     */
+    public function getStackTrace(): StackTraceInterface
+    {
+        return $this->stackTrace;
+    }
+
+    /**
      * Send the log
      *
      * @param string $priority Sentry priority
