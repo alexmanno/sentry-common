@@ -9,6 +9,7 @@ interface StackTraceInterface
     /**
      * Add namespace to ignore during cleanBacktrace() method.
      *
+     * @deprecated
      * @param string $namespace
      */
     public function addIgnoreBacktraceNamespace(string $namespace);
