@@ -88,7 +88,8 @@ final class Sender implements SenderInterface
             $this->client->captureMessage(
                 $message,
                 [],
-                $data
+                $data,
+                $this->stackTrace->cleanBacktrace(debug_backtrace())
             );
 
             return;

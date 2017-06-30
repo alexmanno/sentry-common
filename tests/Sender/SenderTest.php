@@ -47,6 +47,9 @@ class SenderTest extends TestCase
             ]);
 
         $stackTrace->addIgnoreBacktraceNamespace('Facile\\Sentry\\Common\\Sender')->shouldBeCalled();
+        $stackTrace->cleanBacktrace(Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn([]);
 
         $sender = new Sender(
             $client->reveal(),
@@ -66,7 +69,8 @@ class SenderTest extends TestCase
                     ]
                 ),
                 Argument::withEntry('level', 'warning')
-            )
+            ),
+            Argument::exact([])
         )->shouldBeCalled();
 
         $sender->send(
